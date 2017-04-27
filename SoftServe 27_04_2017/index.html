@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>QUnit Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
+<script>
+    
+    function randomNumber(min, max) {
+        let rand = min + Math.random() * (max - min);
+            rand = Math.round(rand);
+        return rand;
+    }
+
+    function Buttle(){
+        let enemy = new Enemy();
+            kindom = new Kindom();
+        kindom.warriers = kindom.createWarrier();
+
+        console.info(kindom);
+        console.info(enemy);
+    }
+
+    function TemplateHero() {
+        this.power = 0;
+        this.helth = 0;
+    }
+
+    TemplateHero.prototype.attach = function () {
+
+    };
+
+    TemplateHero.prototype.deferd = function () {
+
+    };
+
+    function Enemy() {
+        this.power = randomNumber(1,100);
+        this.helth = randomNumber(1,100);
+    }
+
+    function Kindom() {
+        this.sumWarrier = randomNumber(1,100);
+        this.warriers = 0;
+
+        this.createWarrier = function () {
+            let collectionWarriers = [];
+
+            for(i = 1; i <= this.sumWarrier; i++){
+                let warrier = new Warrier();
+                collectionWarriers.push(warrier);
+            }
+            return collectionWarriers;
+        };
+    }
+
+    function Warrier() {
+        this.power = randomNumber(1,10);
+        this.helth = randomNumber(1,10);
+    }
+
+    Enemy.prototype = Object.create(TemplateHero.prototype);
+    Enemy.prototype.constructor = Enemy;
+
+    Kindom.prototype = Object.create(TemplateHero.prototype);
+    Kindom.prototype.constructor = Kindom;
+
+    Buttle();
+
+</script>
+<script src="test.js"></script>
+</body>
+</html>
