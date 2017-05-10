@@ -18,26 +18,21 @@
         return rand;
     }
 
-    function Buttle(){
-        let enemy = new Enemy();
-            kindom = new Kindom();
-        kindom.warriers = kindom.createWarrier();
-
-        console.info(kindom);
-        console.info(enemy);
-    }
-
     function TemplateHero() {
         this.power = 0;
         this.helth = 0;
     }
 
-    TemplateHero.prototype.attach = function () {
+    TemplateHero.prototype.attach = function (hostile) {
+
+        hostile.helth = hostile.helth - 20;
+        this.power = this.power - 10;
 
     };
 
     TemplateHero.prototype.deferd = function () {
-
+        this.power = this.power - 20;
+        this.helth = this.helth + 10;
     };
 
     function Enemy() {
@@ -46,24 +41,55 @@
     }
 
     function Kindom() {
-        this.sumWarrier = randomNumber(1,100);
-        this.warriers = 0;
+        var allPower = [],
+            sumPower = 0,
+            allHelth = [],
+            sumHelth = 0;
 
-        this.createWarrier = function () {
-            let collectionWarriers = [];
+        this. ect = new Ect();
+        this. orc = new Orc();
+        this. grom = new Grom();
 
-            for(i = 1; i <= this.sumWarrier; i++){
-                let warrier = new Warrier();
-                collectionWarriers.push(warrier);
-            }
-            return collectionWarriers;
-        };
+        this.warrier = [this. ect, this. orc, this. grom];
+
+        this.warrier.forEach(
+                function (item) {
+                    allPower.push(item.power);
+                    allHelth.push(item.helth);
+                }
+        );
+
+        allPower.forEach(
+                function (item) {
+                    sumPower +=item;
+                }
+        );
+
+        allHelth.forEach(
+                function (item) {
+                    sumHelth +=item;
+                }
+        );
+
+        this.power = sumPower;
+        this.helth = sumHelth;
     }
+    
+        function Ect() {
+            this.power = randomNumber(1,35);
+            this.helth = randomNumber(1,35);
+        }
 
-    function Warrier() {
-        this.power = randomNumber(1,10);
-        this.helth = randomNumber(1,10);
-    }
+        function Orc() {
+            this.power = randomNumber(1,35);
+            this.helth = randomNumber(1,35);
+        }
+
+        function Grom() {
+            this.power = randomNumber(1,35);
+            this.helth = randomNumber(1,35);
+        }
+
 
     Enemy.prototype = Object.create(TemplateHero.prototype);
     Enemy.prototype.constructor = Enemy;
@@ -71,7 +97,15 @@
     Kindom.prototype = Object.create(TemplateHero.prototype);
     Kindom.prototype.constructor = Kindom;
 
-    Buttle();
+
+
+    var enemy = new Enemy(),
+        kindom = new Kindom();
+
+    console.info(kindom);
+    console.info(enemy);
+
+
 
 </script>
 <script src="test.js"></script>
