@@ -28,6 +28,9 @@
         hostile.helth = hostile.helth - 20;
         this.power = this.power - 10;
 
+        if(hostile.helth <= 0){
+            console.log('Game over! ' + hostile.name + ' - dead!')
+        }
     };
 
     TemplateHero.prototype.deferd = function () {
@@ -36,6 +39,7 @@
     };
 
     function Enemy() {
+        this.name = 'Enemy';
         this.power = randomNumber(1,100);
         this.helth = randomNumber(1,100);
     }
@@ -61,16 +65,17 @@
 
         allPower.forEach(
                 function (item) {
-                    sumPower +=item;
+                    sumPower += item;
                 }
         );
 
         allHelth.forEach(
                 function (item) {
-                    sumHelth +=item;
+                    sumHelth += item;
                 }
         );
 
+        this.name = 'Kindom';
         this.power = sumPower;
         this.helth = sumHelth;
     }
@@ -104,6 +109,7 @@
 
     console.info(kindom);
     console.info(enemy);
+
 
 
 
