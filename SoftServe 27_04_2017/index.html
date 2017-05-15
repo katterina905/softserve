@@ -10,110 +10,11 @@
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
 <script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
-<script>
-    
-    function randomNumber(min, max) {
-        let rand = min + Math.random() * (max - min);
-            rand = Math.round(rand);
-        return rand;
-    }
-
-    function TemplateHero() {
-        this.power = 0;
-        this.helth = 0;
-    }
-
-    TemplateHero.prototype.attach = function (hostile) {
-
-        hostile.helth = hostile.helth - 20;
-        this.power = this.power - 10;
-
-        if(hostile.helth <= 0){
-            console.log('Game over! ' + hostile.name + ' - dead!')
-        }
-    };
-
-    TemplateHero.prototype.deferd = function () {
-        this.power = this.power - 20;
-        this.helth = this.helth + 10;
-    };
-
-    function Enemy() {
-        this.name = 'Enemy';
-        this.power = randomNumber(1,100);
-        this.helth = randomNumber(1,100);
-    }
-
-    function Kindom() {
-        var allPower = [],
-            sumPower = 0,
-            allHelth = [],
-            sumHelth = 0;
-
-        this. ect = new Ect();
-        this. orc = new Orc();
-        this. grom = new Grom();
-
-        this.warrier = [this. ect, this. orc, this. grom];
-
-        this.warrier.forEach(
-                function (item) {
-                    allPower.push(item.power);
-                    allHelth.push(item.helth);
-                }
-        );
-
-        allPower.forEach(
-                function (item) {
-                    sumPower += item;
-                }
-        );
-
-        allHelth.forEach(
-                function (item) {
-                    sumHelth += item;
-                }
-        );
-
-        this.name = 'Kindom';
-        this.power = sumPower;
-        this.helth = sumHelth;
-    }
-    
-        function Ect() {
-            this.power = randomNumber(1,35);
-            this.helth = randomNumber(1,35);
-        }
-
-        function Orc() {
-            this.power = randomNumber(1,35);
-            this.helth = randomNumber(1,35);
-        }
-
-        function Grom() {
-            this.power = randomNumber(1,35);
-            this.helth = randomNumber(1,35);
-        }
-
-
-    Enemy.prototype = Object.create(TemplateHero.prototype);
-    Enemy.prototype.constructor = Enemy;
-
-    Kindom.prototype = Object.create(TemplateHero.prototype);
-    Kindom.prototype.constructor = Kindom;
-
-
-
-    var enemy = new Enemy(),
-        kindom = new Kindom();
-
-    console.info(kindom);
-    console.info(enemy);
-
-
-
-
-</script>
 <script src="test.js"></script>
+<script src="lib.js"></script>
+<script src="templateHero.js"></script>
+<script src="kindom.js"></script>
+<script src="enemy.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
